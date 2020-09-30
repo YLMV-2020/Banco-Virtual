@@ -12,6 +12,15 @@ public class Transaccion
     private Usuario usuario;
     private List<Movimientos> listaDeMovimientos;
 
+    public Transaccion(DateTime fechaTransaccion, float montoDeTransferencia, string numeroDeTransacciones, int valoracion, Usuario usuario)
+    {
+        this.fechaTransaccion = fechaTransaccion;
+        this.montoDeTransferencia = montoDeTransferencia;
+        this.numeroDeTransacciones = numeroDeTransacciones;
+        this.valoracion = valoracion;
+        this.usuario = usuario;
+    }
+
     public DateTime FechaTransaccion { get => fechaTransaccion; set => fechaTransaccion = value; }
     public float MontoDeTransferencia { get => montoDeTransferencia; set => montoDeTransferencia = value; }
     public string NumeroDeTransacciones { get => numeroDeTransacciones; set => numeroDeTransacciones = value; }

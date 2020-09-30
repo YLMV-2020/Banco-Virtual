@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Usuario 
 {
@@ -12,6 +11,18 @@ public class Usuario
     private string nombeDeTarjeta;
     private int tipoDeUsuario;
     private List<Cuenta> listaDeCuentas;
+
+    public Usuario() { }
+    public Usuario(string apellidoUsuario, string dni, bool estadoUsuario, string nombreUsuario, string nombeDeCuenta, string nombeDeTarjeta, int tipoDeUsuario)
+    {
+        this.apellidoUsuario = apellidoUsuario;
+        this.dni = dni;
+        this.estadoUsuario = estadoUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.nombeDeCuenta = nombeDeCuenta;
+        this.nombeDeTarjeta = nombeDeTarjeta;
+        this.tipoDeUsuario = tipoDeUsuario;
+    }
 
     public string ApellidoUsuario { get => apellidoUsuario; set => apellidoUsuario = value; }
     public string Dni { get => dni; set => dni = value; }
