@@ -1,44 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public class Usuario 
+public class Usuario
 {
-    private string apellidoUsuario;
+    private string nombres;
+    private string apellidos;
     private string dni;
-    private bool estadoUsuario;
-    private string nombreUsuario;
-    private string nombeDeCuenta;
-    private string nombeDeTarjeta;
-    private int tipoDeUsuario;
+    private string numeroDeTarjeta;
+    private string clave;
+    private bool estado;
+
     private List<Cuenta> listaDeCuentas;
 
     public Usuario() { }
-    public Usuario(string apellidoUsuario, string dni, bool estadoUsuario, string nombreUsuario, string nombeDeCuenta, string nombeDeTarjeta, int tipoDeUsuario)
+
+    public Usuario(string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave, bool estado)
     {
-        this.apellidoUsuario = apellidoUsuario;
+        listaDeCuentas = new List<Cuenta>();
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.dni = dni;
-        this.estadoUsuario = estadoUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.nombeDeCuenta = nombeDeCuenta;
-        this.nombeDeTarjeta = nombeDeTarjeta;
-        this.tipoDeUsuario = tipoDeUsuario;
+        this.numeroDeTarjeta = numeroDeTarjeta;
+        this.clave = clave;
+        this.estado = estado;
     }
 
-    public string ApellidoUsuario { get => apellidoUsuario; set => apellidoUsuario = value; }
+    public string Nombres { get => nombres; set => nombres = value; }
+    public string Apellidos { get => apellidos; set => apellidos = value; }
     public string Dni { get => dni; set => dni = value; }
-    public bool EstadoUsuario { get => estadoUsuario; set => estadoUsuario = value; }
-    public string NombreUsuario { get => nombreUsuario; set => nombreUsuario = value; }
-    public string NombeDeCuenta { get => nombeDeCuenta; set => nombeDeCuenta = value; }
-    public string NombeDeTarjeta { get => nombeDeTarjeta; set => nombeDeTarjeta = value; }
-    public int TipoDeUsuario { get => tipoDeUsuario; set => tipoDeUsuario = value; }
+    public string NumeroDeTarjeta { get => numeroDeTarjeta; set => numeroDeTarjeta = value; }
+    public string Clave { get => clave; set => clave = value; }
+    public bool Estado { get => estado; set => estado = value; }
     public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
 
-    public double agregarComisionCuentasPropias()
+    public double calcularComisionUsuario()
     {
         return 0.0f;
     }
 
-    public double agregarComisionCuentaUsuario()
+    public double calcularComisionCuentas()
     {
         return 0.0f;
     }

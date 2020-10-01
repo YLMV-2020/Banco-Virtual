@@ -28,22 +28,16 @@ public class BancoController : MonoBehaviour
     {
         Usuario usuario = new Usuario();
 
-        usuario.NombreUsuario = inputNombres.text;
-        usuario.ApellidoUsuario = inputApellidos.text;
+        usuario.Nombres = inputNombres.text;
+        usuario.Apellidos = inputApellidos.text;
 
-        Debug.Log("Nombre: " + usuario.NombreUsuario);
-        Debug.Log("Apellidos: " + usuario.ApellidoUsuario);
+        myBanco.agregarUsuario(usuario);
 
-        Cuenta cuenta = new Cuenta();
+        List<Usuario> listaDeUsuarios = myBanco.ListaDeUsuarios;
 
-        cuenta.Usuario = usuario;
+        Debug.Log("Nombre: " + listaDeUsuarios[0].Nombres);
+        Debug.Log("Apellidos: " + listaDeUsuarios[0].Apellidos);
 
-        //myBanco.agregarCuenta(cuenta);
-
-        //List<Cuenta> listaDeCuentas = myBanco.ListaDeCuentas;
-
-        //Debug.Log("Nombre: " + listaDeCuentas[0].Usuario.NombreUsuario);
-        //Debug.Log("Apellidos: " + listaDeCuentas[0].Usuario.ApellidoUsuario);
 
     }
 }

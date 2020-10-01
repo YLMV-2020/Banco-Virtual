@@ -1,49 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
+public enum Moneda
+{
+    SOL,
+    DOLAR
+}
 
 public class Cuenta 
 {
-    private int clave;
-    private bool estadoDeCuenta;
-    private float montoActual;
-    private string numeroDeCuenta;
-    private string tipoDeMoneda;
-    private Usuario usuario;
+    private string numero;
+    private string numeroInterbancario;
+    private double saldo;
+    private Moneda moneda;
+    private bool estado;
    
     public Cuenta() { }
-    public Cuenta(int clave, bool estadoDeCuenta, float montoActual, string numeroDeCuenta, string tipoDeMoneda)
+
+    public Cuenta(string numero, string numeroInterbancario, double saldo, Moneda moneda)
     {
-        this.clave = clave;
-        this.estadoDeCuenta = estadoDeCuenta;
-        this.montoActual = montoActual;
-        this.numeroDeCuenta = numeroDeCuenta;
-        this.tipoDeMoneda = tipoDeMoneda;
+        this.numero = numero;
+        this.numeroInterbancario = numeroInterbancario;
+        this.saldo = saldo;
+        this.Moneda = moneda;
+        this.estado = true;
     }
 
-    public int Clave { get => clave; set => clave = value; }
-    public bool EstadoDeCuenta { get => estadoDeCuenta; set => estadoDeCuenta = value; }
-    public float MontoActual { get => montoActual; set => montoActual = value; }
-    public string NumeroDeCuenta { get => numeroDeCuenta; set => numeroDeCuenta = value; }
-    public string TipoDeMoneda { get => tipoDeMoneda; set => tipoDeMoneda = value; }
-    public Usuario Usuario { get => usuario; set => usuario = value; }
-
-    public bool validarClave()
+    public string Numero { get => numero; set => numero = value; }
+    public string NumeroInterbancario { get => numeroInterbancario; set => numeroInterbancario = value; }
+    public double Saldo { get => saldo; set => saldo = value; }
+    public bool Estado { get => estado; set => estado = value; }
+    public Moneda Moneda { get => moneda; set => moneda = value; }
+    virtual public double calcularComision() 
     {
-        return true;
+        return 0.0f;
     }
-
-    // validamos que un usuario tenga más de 1 cuenta
-    //public bool validarCuenta()
-    //{
-    //    for (int i = 0; i < listaDeCuentas.Count; i++)
-    //    {
-    //        for (int j = 0; j < listaDeCuentas.Count; j++)
-    //        {
-    //            if (listaDeCuentas[i] == listaDeCuentas[j])
-    //                return false;
-    //        }
-    //    }
-    //    return true;
-    //}
 }

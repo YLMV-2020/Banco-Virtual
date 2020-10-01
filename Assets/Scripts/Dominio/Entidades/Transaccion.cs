@@ -1,70 +1,36 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
+public enum TipoTransaccion
+{
+    OTRA_CUENTA,
+    OTRO_BANCO,
+    CUENTA_PROPIA,
+    EXTERIOR
+}
 
 public class Transaccion
 {
-    private DateTime fechaTransaccion;
-    private float montoDeTransferencia;
-    private string numeroDeTransacciones;
+    private string codigo;
+    private DateTime fecha;
+    private double monto;
+    private TipoTransaccion tipo;
     private int valoracion;
-    private Usuario usuario;
-    private List<Movimientos> listaDeMovimientos;
 
-    public Transaccion(DateTime fechaTransaccion, float montoDeTransferencia, string numeroDeTransacciones, int valoracion, Usuario usuario)
-    {
-        this.fechaTransaccion = fechaTransaccion;
-        this.montoDeTransferencia = montoDeTransferencia;
-        this.numeroDeTransacciones = numeroDeTransacciones;
-        this.valoracion = valoracion;
-        this.usuario = usuario;
-    }
-
-    public DateTime FechaTransaccion { get => fechaTransaccion; set => fechaTransaccion = value; }
-    public float MontoDeTransferencia { get => montoDeTransferencia; set => montoDeTransferencia = value; }
-    public string NumeroDeTransacciones { get => numeroDeTransacciones; set => numeroDeTransacciones = value; }
+    public string Codigo { get => codigo; set => codigo = value; }
+    public DateTime Fecha { get => fecha; set => fecha = value; }
+    public double Monto { get => monto; set => monto = value; }
+    public TipoTransaccion Tipo { get => tipo; set => tipo = value; }
     public int Valoracion { get => valoracion; set => valoracion = value; }
-    public Usuario Usuario { get => usuario; set => usuario = value; }
-    public List<Movimientos> ListaDeMovimientos { get => listaDeMovimientos; set => listaDeMovimientos = value; }
 
-    public void calcularCambioDeMoneda()
-    {
-
-    }
-
-    public double calcularComision()
+    public float calcularComision()
     {
         return 0.0f;
     }
-
-    public double calcularMontoTotalDeMovimientos()
+    public float calcularMontoTotal()
     {
         return 0.0f;
     }
-    
-    public double calcularTotal()
-    {
-        return 0.0f;
-    }
-    
-    public double calcularTotalGeneral()
-    {
-        return 0.0f;
-    }
-    public double calcularValorizacion()
-    {
-        return 0.0f;
-    }
-    public double totalDeMovimientoEnDolares()
-    {
-        return 0.0f;
-    }
-    public double totalDeMovimientoEnSoles()
-    {
-        return 0.0f;
-    }
-
-
 
 }
