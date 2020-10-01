@@ -33,14 +33,20 @@ public class Usuario
     public bool Estado { get => estado; set => estado = value; }
     public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
 
-    public double calcularComisionUsuario()
+    public float calcularComision()
     {
+        //return 0.5f * dia;
         return 0.0f;
     }
 
-    public double calcularComisionCuentas()
+    public float calcularComisionCuentas()
     {
-        return 0.0f;
+        float comision = 0.0f;
+        foreach(var cuenta in listaDeCuentas)
+        {
+            comision += cuenta.calcularComision();
+        }
+        return comision;
     }
 
 }
