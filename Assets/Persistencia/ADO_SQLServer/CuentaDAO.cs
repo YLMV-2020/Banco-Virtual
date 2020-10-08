@@ -1,7 +1,7 @@
 ﻿using CapaDominio.Contratos;
 using CapaDominio.Entidades;
 using System;
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
 using System.Collections.Generic;
 
 namespace CapaPersistencia.ADO_SQLServer
