@@ -1,50 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using CapaDominio.Contratos;
+﻿using CapaDominio.Contratos;
 using CapaDominio.Entidades;
 using CapaDominio.Servicios;
-using CapaPersistencia.ADO_SQLServer;
 using CapaPersistencia.FabricaDatos;
+using System.Collections.Generic;
 
 
 namespace CapaAplicacion.Servicios
 {
-	public class GenerarReporteDeMovimientosServicio
-	{
-		private IGestorAccesoDatos gestorDatos;
-		private ICuenta	cuentaDAO;
-		private IMovimiento movimientoDAO;
-		//private ITransaccion transaccionDAO;
-		private IUsuario usarioDAO;
-	
+    public class GenerarReporteDeMovimientosServicio
+    {
+        private IGestorAccesoDatos gestorDatos;
+        private ICuenta cuentaDAO;
+        private IMovimiento movimientoDAO;
+        //private ITransaccion transaccionDAO;
+        private IUsuario usarioDAO;
 
-		public GenerarReporteDeMovimientosServicio()
-		{
-			FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
 
-			gestorDatos = fabricaAbstracta.crearGestorAccesoDatos();
+        public GenerarReporteDeMovimientosServicio()
+        {
+            //FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
 
-			//cuentaDAO = fabricaAbstracta.crearCuentaDAO(gestorDatos);
+            //gestorDatos = fabricaAbstracta.crearGestorAccesoDatos();
 
-			//movimientoDAO = fabricaAbstracta.crearMovimientoDAO(gestorDatos);
+            //cuentaDAO = fabricaAbstracta.crearCuentaDAO(gestorDatos);
 
-			//transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
+            //movimientoDAO = fabricaAbstracta.crearMovimientoDAO(gestorDatos);
 
-			//usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
-		}
+            //transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
 
-		public List<Movimiento> buscarMovimientos(string codigoDeMovimiento)
-		{
-			gestorDatos.abrirConexion();
-			//List<Movimiento> listaDeMovimientos = movimientoDAO.buscar(codigoDeMovimiento);
-			gestorDatos.cerrarConexion();
-			//return listaDeMovimientos;
-			return null;
-		}
+            //usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
+        }
 
-		/*public Cuenta buscarTransaccion(string numeroDeTransaccion)
+        public List<Movimiento> buscarMovimientos(string codigoDeMovimiento)
+        {
+            gestorDatos.abrirConexion();
+            //List<Movimiento> listaDeMovimientos = movimientoDAO.buscar(codigoDeMovimiento);
+            gestorDatos.cerrarConexion();
+            //return listaDeMovimientos;
+            return null;
+        }
+
+        /*public Cuenta buscarTransaccion(string numeroDeTransaccion)
 		{
 			gestorDatos.abrirConexion();
 			Transaccion transaccion = transaccionDAO.buscarPorNumero(numero);
@@ -52,13 +48,13 @@ namespace CapaAplicacion.Servicios
 			return transaccion;
 		}*/
 
-		public void guardarMovimiento(Movimiento movimiento)
-		{
-			RegistroDeMovimiento registroDeMovimiento = new RegistroDeMovimiento();
-			registroDeMovimiento.validarMovimiento(movimiento);
-			//gestorDatos.iniciarMovimiento();
-			//movimientoDAO.guardar(movimiento);
-			//gestorDatos.terminarMovimiento();
-		}
-	}
+        public void guardarMovimiento(Movimiento movimiento)
+        {
+            RegistroDeMovimiento registroDeMovimiento = new RegistroDeMovimiento();
+            registroDeMovimiento.validarMovimiento(movimiento);
+            //gestorDatos.iniciarMovimiento();
+            //movimientoDAO.guardar(movimiento);
+            //gestorDatos.terminarMovimiento();
+        }
+    }
 }

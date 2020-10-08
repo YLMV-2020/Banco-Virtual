@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CapaDominio.Contratos
+﻿namespace CapaDominio.Contratos
 {
-	public interface IGestorAccesoDatos
-	{
+    public interface IGestorAccesoDatos
+    {
         void abrirConexion();
         void cerrarConexion();
         void iniciarTransaccion();

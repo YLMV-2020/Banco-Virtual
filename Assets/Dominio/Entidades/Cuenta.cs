@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace CapaDominio.Entidades
+﻿namespace CapaDominio.Entidades
 {
     public enum Moneda
     {

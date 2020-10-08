@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-public enum TipoOperacion
+﻿public enum TipoOperacion
 {
     CAMBIO_MONEDA,
     TRANSFERENCIA,
@@ -8,7 +6,7 @@ public enum TipoOperacion
     ENVIAR_DINERO_A_CONTACTO,
     RETIRAR_SIN_TARJETA
 }
-public class Operacion 
+public class Operacion
 {
     private TipoOperacion tipo;
 
@@ -16,7 +14,7 @@ public class Operacion
     {
 
     }
-    
+
     public void transferencia()
     {
 

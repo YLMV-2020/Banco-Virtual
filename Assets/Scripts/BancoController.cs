@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 using CapaDominio.Entidades;
 
 public class BancoController : MonoBehaviour
@@ -22,7 +21,7 @@ public class BancoController : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void crearCuenta()
