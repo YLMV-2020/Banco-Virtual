@@ -1,0 +1,16 @@
+{
+    "name": "CapaAplicacion",
+    "references": [
+        "GUID:b1d25de6aa57b6144bda9c20e5407a8b",
+        "GUID:4782390f7db7e354e8d6b39de3268a27"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,15 @@
+{
+    "name": "CapaPersistencia",
+    "references": [
+        "GUID:b1d25de6aa57b6144bda9c20e5407a8b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
