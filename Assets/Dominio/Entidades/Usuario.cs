@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+
 namespace CapaDominio.Entidades
 {
     public class Usuario
@@ -33,6 +34,7 @@ namespace CapaDominio.Entidades
         public string Clave { get => clave; set => clave = value; }
         public bool Estado { get => estado; set => estado = value; }
         public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
+
 
         public float calcularComision()
         {

@@ -1,12 +1,17 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections;
+using System.Collections.Generic;
 using CapaDominio.Entidades;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.TestRunner;
+using UnityEngine.TestTools;
 
-namespace MasterTest
+namespace Tests
 {
-    [TestClass]
     public class Test
     {
-        [TestMethod]
+
+        [Test]
         public void test1_calcularComision()
         {
             TipoTransaccion a = TipoTransaccion.CUENTA_PROPIA;
@@ -19,7 +24,7 @@ namespace MasterTest
 
         }
 
-        [TestMethod]
+        [Test]
         public void test2_calcularComision()
         {
             TipoTransaccion a = TipoTransaccion.OTRA_CUENTA;
@@ -32,7 +37,7 @@ namespace MasterTest
 
         }
 
-        [TestMethod]
+        [Test]
         public void test3_validarMonto()
         {
             float monto1 = 5;
@@ -42,11 +47,12 @@ namespace MasterTest
             if (transaccion != null)
             {
                 bool resultado = transaccion.validarMonto(monto1, cuenta1);
+
                 Assert.AreEqual(resultadoEsperado, resultado);
             }
-        }
 
-        [TestMethod]
+        }
+        [Test]
         public void test4_validarMonto()
         {
             float monto1 = 10;
@@ -54,10 +60,12 @@ namespace MasterTest
             bool resultadoEsperado = false;
             Transaccion transaccion = new Transaccion();
             bool resultado = transaccion.validarMonto(monto1, cuenta1);
-            Assert.AreEqual(resultadoEsperado, resultado);
-        }
 
-        [TestMethod]
+            Assert.AreEqual(resultadoEsperado, resultado);
+
+
+        }
+        [Test]
         public void test5_validarMonto()
         {
             float monto1 = 10;
@@ -65,54 +73,67 @@ namespace MasterTest
             bool resultadoEsperado = true;
             Transaccion transaccion = new Transaccion();
             bool resultado = transaccion.validarMonto(monto1, cuenta1);
-            Assert.AreEqual(resultadoEsperado, resultado);
-        }
-        [TestMethod]
 
+            Assert.AreEqual(resultadoEsperado, resultado);
+
+
+        }
+
+        [Test]
         public void test6_verificarCodigo()
         {
             string codigoaux = "123";
             string codigoaux2 = "123";
             bool resultadoEsperado = true;
             Transaccion transaccion = new Transaccion();
+
             bool resultado = transaccion.verificarCodigo(codigoaux, codigoaux2);
+
             Assert.AreEqual(resultadoEsperado, resultado);
+
         }
 
-        [TestMethod]
+        [Test]
         public void test7_verificarCodigo()
         {
             string codigoaux = "123";
             string codigoaux2 = "124";
             bool resultadoEsperado = false;
             Transaccion transaccion = new Transaccion();
-            bool resultado = transaccion.verificarCodigo(codigoaux, codigoaux2);
-            Assert.AreEqual(resultadoEsperado, resultado);
-        }
 
-        [TestMethod]
+            bool resultado = transaccion.verificarCodigo(codigoaux, codigoaux2);
+
+            Assert.AreEqual(resultadoEsperado, resultado);
+
+        }
+        [Test]
         public void test8_calcularMontoTotal()
         {
             TipoTransaccion a = TipoTransaccion.CUENTA_PROPIA;
+
             float monto = 50f;
             float resultadoEsperado = 50.50f;
             Transaccion transaccion = new Transaccion();
+
             float resultado = transaccion.calcularMontoTotal(a, monto);
             Assert.AreEqual(resultadoEsperado, resultado);
+
         }
 
-        [TestMethod]
+        [Test]
         public void test9_calcularMontoTotal()
         {
             TipoTransaccion a = TipoTransaccion.OTRA_CUENTA;
             float monto = 50f;
             float resultadoEsperado = 57.5f;
             Transaccion transaccion = new Transaccion();
+
             float resultado = transaccion.calcularMontoTotal(a, monto);
             Assert.AreEqual(resultadoEsperado, resultado);
+
         }
 
-        [TestMethod]
+        [Test]
         public void test10_RealizarTransaccion()
         {
             float monto1 = 5;
@@ -123,7 +144,7 @@ namespace MasterTest
             Assert.AreEqual(resultadoEsperado, resultado);
         }
 
-        [TestMethod]
+        [Test]
         public void test11_RealizarTransaccion()
         {
             float monto1 = 5;
@@ -133,5 +154,6 @@ namespace MasterTest
             float resultado = transaccion.calcularTransferencia(monto1, moneda);
             Assert.AreEqual(resultadoEsperado, resultado);
         }
+
     }
 }
