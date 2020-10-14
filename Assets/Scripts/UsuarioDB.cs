@@ -6,6 +6,10 @@ using UnityEngine;
 using System.Data;
 using System.IO;
 using Mono.Data.Sqlite;
+using CapaPersistencia.FabricaDatos;
+using CapaPersistencia.ADO_SQLServer;
+using CapaDominio.Contratos;
+using CapaDominio.Entidades;
 
 public class UsuarioDB : MonoBehaviour
 {
@@ -20,9 +24,25 @@ public class UsuarioDB : MonoBehaviour
 
     void Start()
     {
-        //insertarUsuario("Mario", "Chumpitazi", "79194222", "4562554576547145", "111202");
-        //borrarUsuario(3);
-        obtenerUsuarios();
+        //obtenerUsuarios();
+        comprobar();
+    }
+
+    void comprobar()
+    {
+        FabricaSQLServer fabrica = new FabricaSQLServer();
+        IGestorAccesoDatos gestorSQL = fabrica.crearGestorAccesoDatos();
+        UsuarioDAO usuarioDAO = (UsuarioDAO)fabrica.crearUsuarioDAO(gestorSQL);
+        gestorSQL.abrirConexion();
+        Usuario u = usuarioDAO.buscarPorDni("79155159");
+        Usuario v = usuarioDAO.buscarPorDni("79199199");
+
+        gestorSQL.cerrarConexion();
+
+        Debug.Log("Nombre: " + u.Nombres);
+        Debug.Log("Nombre: " + v.Nombres);
+
+
     }
 
     void abrirDB()

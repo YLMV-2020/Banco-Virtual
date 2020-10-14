@@ -1,9 +1,9 @@
-﻿using System;
+﻿using CapaDominio.Contratos;
+using System;
 using System.Data;
 using System.IO;
 using Mono.Data.Sqlite;
 using UnityEngine;
-using CapaDominio.Contratos;
 
 namespace CapaPersistencia.ADO_SQLServer
 {

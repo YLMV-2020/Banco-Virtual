@@ -6,13 +6,13 @@ namespace CapaDominio.Servicios
     {
         public void validarMovimiento(Movimiento movimiento)
         {
-            //if(!movimiento.tieneNumeroValido())
-            //         {
-            //	throw new Exception("ERROR");
+            //if (!movimiento.tieneNumeroValido())
+            //{
+            //    throw new Exception("ERROR");
             //}
             //if (!movimiento.tieneNumeroTransaccionValido())
             //{
-            //	throw new Exception("ERROR");
+            //    throw new Exception("ERROR");
             //}
         }
     }
