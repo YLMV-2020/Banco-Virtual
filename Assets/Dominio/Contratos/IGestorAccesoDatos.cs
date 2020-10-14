@@ -1,4 +1,7 @@
-﻿namespace CapaDominio.Contratos
+﻿using CapaDominio.Entidades;
+using System.Collections.Generic;
+
+namespace CapaDominio.Contratos
 {
     public interface IGestorAccesoDatos
     {
