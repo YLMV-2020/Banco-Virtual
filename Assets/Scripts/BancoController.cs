@@ -6,6 +6,7 @@ using CapaDominio.Entidades;
 public class BancoController : MonoBehaviour
 {
 
+    [SerializeField] Text nombre;
     [SerializeField] Button buttonRegistrarCuenta;
     [SerializeField] InputField inputNombres;
     [SerializeField] InputField inputApellidos;
@@ -17,6 +18,7 @@ public class BancoController : MonoBehaviour
     void Start()
     {
         myBanco = new Banco("N00113540", "Banco ChumpiBrazzer");
+        nombre.text = myBanco.NombreBanco;
     }
 
     void Update()
