@@ -31,21 +31,50 @@ namespace CapaDominio.Entidades
             return monto <= cuenta.Saldo;
         }
 
-        public float calcularComision()
+        public float calcularComision(TipoTransaccion a, float montoaux)
         {
             float comision = 0.0f;
-            comision += tipo == TipoTransaccion.CUENTA_PROPIA ? 0.5f : 0.0f;
-            comision += tipo == TipoTransaccion.OTRA_CUENTA ? monto * 015f : 0.0f;
+            if (a == TipoTransaccion.CUENTA_PROPIA)
+                comision = 0.5f;
+
+            else
+                comision = montoaux * 0.15f;
+
             return comision;
         }
-        public float calcularMontoTotal()
+
+        public bool validarMonto(float monto1, float cuenta1)
         {
-            return monto + calcularComision();
+            return monto1 <= cuenta1;
+        }
+
+        public float calcularMontoTotal(TipoTransaccion a, float montoaux)
+        {
+            monto = montoaux;
+            return monto + calcularComision(a, montoaux);
         }
 
         public bool validarValoracion()
         {
             return valoracion >= 1 && valoracion <= 5;
+        }
+
+        public float calcularTransferencia(float monto, string tipomoneda1)
+        {
+
+            if (tipomoneda1.Equals("DOLAR"))
+            {
+                monto *= 3.45f;
+            }
+
+            return monto;
+        }
+
+        public bool verificarCodigo(string codigoaux, string codigoaux2)
+        {
+            codigo = codigoaux2;
+            return (codigo == codigoaux);
+
         }
 
     }

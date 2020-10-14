@@ -41,7 +41,7 @@ namespace CapaDominio.Entidades
             float comision = 0.0f;
             foreach (var transaccion in listaDeTransacciones)
             {
-                comision += transaccion.calcularComision();
+                //comision += transaccion.calcularComision();
             }
             return comision;
         }

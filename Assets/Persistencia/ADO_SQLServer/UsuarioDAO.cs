@@ -12,7 +12,6 @@ namespace CapaPersistencia.ADO_SQLServer
 {
     public class UsuarioDAO : IUsuario
     {
-
         private GestorSQL gestorSQL;
         public UsuarioDAO(IGestorAccesoDatos gestorSQL)
         {
@@ -67,6 +66,11 @@ namespace CapaPersistencia.ADO_SQLServer
                 throw err;
             }
             return usuario;
+        }
+
+        public void guardarUsuario(Usuario usuario)
+        {
+            string consultaSQL = String.Format("insert into Usuario(nombres, apellidos, dni, numeroTarjeta, clave) values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", usuario.Nombres, usuario.Apellidos, usuario.Dni, usuario.NumeroDeTarjeta, usuario.Clave);
         }
 
         private Usuario obtenerUsuario(IDataReader resultadoSQL)

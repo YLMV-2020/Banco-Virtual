@@ -77,7 +77,7 @@ public class UsuarioDB : MonoBehaviour
     {
         abrirDB();
         comandosDB = conexionDB.CreateCommand();
-        string sqlQuery = String.Format("insert into Usuario(nombres, apellidos, dni, numeroTarjeta, clave) values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", nombres, apellidos, dni, numeroTarjeta, clave); ;
+        string sqlQuery = String.Format("insert into Usuario(nombres, apellidos, dni, numeroTarjeta, clave) values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", nombres, apellidos, dni, numeroTarjeta, clave);
         comandosDB.CommandText = sqlQuery;
         comandosDB.ExecuteScalar();
 
