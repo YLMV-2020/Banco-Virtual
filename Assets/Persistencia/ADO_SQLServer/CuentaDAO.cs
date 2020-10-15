@@ -1,19 +1,19 @@
 ﻿using CapaDominio.Contratos;
 using CapaDominio.Entidades;
 using System;
-//using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
-    public class CuentaDAO /*: ICuenta*/
+    public class CuentaDAO : ICuenta
     {
-        //private GestorSQL gestorSQL;
+        private GestorSQL gestorSQL;
 
-        //public CuentaDAO(IGestorAccesoDatos gestorSQL)
-        //{
-        //    this.gestorSQL = (GestorSQL)gestorSQL;
-        //}
+        public CuentaDAO(IGestorAccesoDatos gestorSQL)
+        {
+            this.gestorSQL = (GestorSQL)gestorSQL;
+        }
 
         //public Cuenta buscarPorNumeroCuenta(string numero)
         //{
@@ -43,12 +43,13 @@ namespace CapaPersistencia.ADO_SQLServer
         //    return null;
         //}
 
-        //private Cuenta obtenerCuenta(SqlDataReader resultadoSQL)
-        //{
-        //    Cuenta cuenta = new Cuenta();
-        //    cuenta.NumeroDeCuenta = resultadoSQL.GetString(0);
-        //    cuenta.MontoActual = resultadoSQL.GetString(1);
-        //    return cuenta;
-        //}
+        private Cuenta obtenerCuenta(IDataReader resultadoSQL)
+        {
+            Cuenta cuenta = new Cuenta();
+            cuenta.Numero = resultadoSQL.GetString(0);
+            cuenta.NumeroInterbancario = resultadoSQL.GetString(1);
+            cuenta.Saldo = resultadoSQL.GetFloat(2);
+            return cuenta;
+        }
     }
 }

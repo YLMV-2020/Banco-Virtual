@@ -5,6 +5,6 @@ namespace CapaDominio.Contratos
 {
     public interface IMovimiento
     {
-        List<Movimiento> buscarMovimiento(string codigo);
+        //List<Movimiento> buscarMovimiento(string codigo);
     }
 }

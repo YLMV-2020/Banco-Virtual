@@ -25,7 +25,7 @@ public class UsuarioDB : MonoBehaviour
     
     void Start()
     {
-        //obtenerUsuarios();
+        obtenerUsuarios();
         comprobar();
     }
 
@@ -35,14 +35,12 @@ public class UsuarioDB : MonoBehaviour
         IGestorAccesoDatos gestorSQL = fabrica.crearGestorAccesoDatos();
         UsuarioDAO usuarioDAO = (UsuarioDAO)fabrica.crearUsuarioDAO(gestorSQL);
         gestorSQL.abrirConexion();
-        Usuario u = usuarioDAO.buscarPorDni("79155159");
-        Usuario v = usuarioDAO.buscarPorDni("79199199");
+
+        Usuario nuevo = new Usuario("Leonidjas", "Vargafss", "12345678", "987654321", "fxxx");
+
+        usuarioDAO.guardarUsuario(nuevo);
 
         gestorSQL.cerrarConexion();
-
-        Debug.Log("Nombre: " + u.Nombres);
-        Debug.Log("Nombre: " + v.Nombres);
-
 
     }
 

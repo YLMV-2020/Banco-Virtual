@@ -7,5 +7,6 @@ namespace CapaDominio.Contratos
     {
         List<Usuario> obtenerUsuarios();
         Usuario buscarPorDni(string dni);
+        void guardarUsuario(Usuario usuario);
     }
 }

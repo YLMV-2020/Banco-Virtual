@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
-    public class MovimientoDAO /*: IMovimiento*/
+    public class MovimientoDAO : IMovimiento
     {
-        //private GestorSQL gestorSQL;
+        private GestorSQL gestorSQL;
 
-        //public MovimientoDAO(IGestorAccesoDatos gestorSQL)
-        //{
-        //    this.gestorSQL = (GestorSQL)gestorSQL;
-        //}
+        public MovimientoDAO(IGestorAccesoDatos gestorSQL)
+        {
+            this.gestorSQL = (GestorSQL)gestorSQL;
+        }
 
         //public List<Movimiento> buscarMovimiento(string numero)
         //{

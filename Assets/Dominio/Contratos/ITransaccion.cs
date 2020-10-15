@@ -2,8 +2,8 @@
 
 namespace CapaDominio.Contratos
 {
-    public interface IVenta
+    public interface ITransaccion
     {
-        void guardarTrasaccion(Transaccion transaccion);
+        //void guardarTrasaccion(Transaccion transaccion);
     }
 }

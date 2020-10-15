@@ -16,7 +16,7 @@ namespace CapaDominio.Entidades
 
         public Usuario() { }
 
-        public Usuario(string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave, bool estado)
+        public Usuario(string nombres, string apellidos, string dni, string numeroDeTarjeta, string clave)
         {
             listaDeCuentas = new List<Cuenta>();
             this.nombres = nombres;
@@ -24,7 +24,7 @@ namespace CapaDominio.Entidades
             this.dni = dni;
             this.numeroDeTarjeta = numeroDeTarjeta;
             this.clave = clave;
-            this.estado = estado;
+            this.estado = true;
         }
 
         public string Nombres { get => nombres; set => nombres = value; }

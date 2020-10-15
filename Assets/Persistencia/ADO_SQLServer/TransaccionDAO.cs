@@ -4,14 +4,14 @@ using System;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
-    public class TransaccionDAO /*: ITransaccion*/
+    public class TransaccionDAO : ITransaccion
     {
-        //private GestorSQL gestorSQL;
+        private GestorSQL gestorSQL;
 
-        //public TransaccionDAO(IGestorAccesoDatos gestorSQL)
-        //{
-        //    this.gestorSQL = (GestorSQL)gestorSQL;
-        //}
+        public TransaccionDAO(IGestorAccesoDatos gestorSQL)
+        {
+            this.gestorSQL = (GestorSQL)gestorSQL;
+        }
 
         //public void guardarTransaccion(Transaccion transaccion)
         //{

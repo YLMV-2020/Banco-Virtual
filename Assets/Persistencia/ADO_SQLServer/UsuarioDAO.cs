@@ -55,6 +55,7 @@ namespace CapaPersistencia.ADO_SQLServer
                 if (resultadoSQL.Read())
                 {
                     usuario = obtenerUsuario(resultadoSQL);
+                    resultadoSQL.Close();
                 }
                 else
                 {
@@ -71,6 +72,18 @@ namespace CapaPersistencia.ADO_SQLServer
         public void guardarUsuario(Usuario usuario)
         {
             string consultaSQL = String.Format("insert into Usuario(nombres, apellidos, dni, numeroTarjeta, clave) values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", usuario.Nombres, usuario.Apellidos, usuario.Dni, usuario.NumeroDeTarjeta, usuario.Clave);
+
+            try
+            {
+                IDbCommand resultadoSQL = gestorSQL.obtenerComandoSQL(consultaSQL);
+                resultadoSQL.ExecuteScalar();
+                resultadoSQL.Dispose();
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+
         }
 
         private Usuario obtenerUsuario(IDataReader resultadoSQL)
