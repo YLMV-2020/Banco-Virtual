@@ -18,9 +18,9 @@ namespace CapaAplicacion.Servicios
 
         public GenerarReporteDeMovimientosServicio()
         {
-            //FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
+            FabricaAbstracta fabricaAbstracta = FabricaAbstracta.crearInstancia();
 
-            //gestorDatos = fabricaAbstracta.crearGestorAccesoDatos();
+            gestorDatos = fabricaAbstracta.crearGestorAccesoDatos();
 
             //cuentaDAO = fabricaAbstracta.crearCuentaDAO(gestorDatos);
 
@@ -28,7 +28,7 @@ namespace CapaAplicacion.Servicios
 
             //transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
 
-            //usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
+            usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
         public List<Movimiento> buscarMovimientos(string codigoDeMovimiento)
@@ -40,13 +40,14 @@ namespace CapaAplicacion.Servicios
             return null;
         }
 
-        /*public Cuenta buscarTransaccion(string numeroDeTransaccion)
-		{
-			gestorDatos.abrirConexion();
-			Transaccion transaccion = transaccionDAO.buscarPorNumero(numero);
-			gestorDatos.cerrarConexion();
-			return transaccion;
-		}*/
+        public Cuenta buscarTransaccion(string numeroDeTransaccion)
+        {
+            gestorDatos.abrirConexion();
+            //Transaccion transaccion = transaccionDAO.buscarPorNumero(numero);
+            gestorDatos.cerrarConexion();
+            //return transaccion;
+            return null;
+        }
 
         public void guardarMovimiento(Movimiento movimiento)
         {
