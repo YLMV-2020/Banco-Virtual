@@ -12,7 +12,7 @@ namespace CapaAplicacion.Servicios
         private IGestorAccesoDatos gestorDatos;
         private ICuenta cuentaDAO;
         private IMovimiento movimientoDAO;
-        //private ITransaccion transaccionDAO;
+        private ITransaccion transaccionDAO;
         private IUsuario usarioDAO;
 
 
@@ -22,40 +22,36 @@ namespace CapaAplicacion.Servicios
 
             gestorDatos = fabricaAbstracta.crearGestorAccesoDatos();
 
-            //cuentaDAO = fabricaAbstracta.crearCuentaDAO(gestorDatos);
+            cuentaDAO = fabricaAbstracta.crearCuentaDAO(gestorDatos);
 
-            //movimientoDAO = fabricaAbstracta.crearMovimientoDAO(gestorDatos);
+            movimientoDAO = fabricaAbstracta.crearMovimientoDAO(gestorDatos);
 
-            //transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
+            transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
 
             usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
-        public List<Movimiento> buscarMovimientos(string codigoDeMovimiento)
+        public Movimiento buscarMovimiento(string codigoDeMovimiento)
         {
             gestorDatos.abrirConexion();
-            //List<Movimiento> listaDeMovimientos = movimientoDAO.buscar(codigoDeMovimiento);
+            Movimiento movimiento = movimientoDAO.buscarPorCodigo(codigoDeMovimiento);
             gestorDatos.cerrarConexion();
-            //return listaDeMovimientos;
-            return null;
+            return movimiento;
         }
 
-        public Cuenta buscarTransaccion(string numeroDeTransaccion)
+        public Transaccion buscarTransaccion(string codigo)
         {
             gestorDatos.abrirConexion();
-            //Transaccion transaccion = transaccionDAO.buscarPorNumero(numero);
+            Transaccion transaccion = transaccionDAO.buscarPorCodigo(codigo);
             gestorDatos.cerrarConexion();
-            //return transaccion;
-            return null;
+            return transaccion;
         }
 
         public void guardarMovimiento(Movimiento movimiento)
         {
-            RegistroDeMovimiento registroDeMovimiento = new RegistroDeMovimiento();
-            registroDeMovimiento.validarMovimiento(movimiento);
-            //gestorDatos.iniciarMovimiento();
-            //movimientoDAO.guardar(movimiento);
-            //gestorDatos.terminarMovimiento();
+            gestorDatos.abrirConexion();
+            movimientoDAO.guardarMovimiento(movimiento);
+            gestorDatos.cerrarConexion();
         }
     }
 }

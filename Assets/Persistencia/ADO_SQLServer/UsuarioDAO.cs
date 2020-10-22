@@ -17,8 +17,7 @@ namespace CapaPersistencia.ADO_SQLServer
         {
             this.gestorSQL = (GestorSQL)gestorSQL;
         }
-
-        public List<Usuario> obtenerUsuarios()
+        public List<Usuario> obtenerListaDeUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
 
@@ -81,9 +80,8 @@ namespace CapaPersistencia.ADO_SQLServer
             }
             catch (Exception err)
             {
-                throw err;
+                throw new Exception("Ocurrio un problema al intentar guardar.", err);
             }
-
         }
 
         private Usuario obtenerUsuario(IDataReader resultadoSQL)

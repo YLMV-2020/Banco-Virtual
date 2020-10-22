@@ -35,7 +35,6 @@ namespace CapaDominio.Entidades
         public bool Estado { get => estado; set => estado = value; }
         public List<Cuenta> ListaDeCuentas { get => listaDeCuentas; set => listaDeCuentas = value; }
 
-
         public float calcularComision()
         {
             //return 0.5f * dia;
@@ -50,6 +49,16 @@ namespace CapaDominio.Entidades
                 comision += cuenta.calcularComision();
             }
             return comision;
+        }
+
+        public bool validarInicioSesion(Usuario usuario)
+        {
+            return usuario.Dni == dni && usuario.NumeroDeTarjeta == numeroDeTarjeta && usuario.Clave == clave;
+        }
+
+        public bool verificarCodigo(string claveaux)
+        {
+            return clave == claveaux;
         }
 
     }

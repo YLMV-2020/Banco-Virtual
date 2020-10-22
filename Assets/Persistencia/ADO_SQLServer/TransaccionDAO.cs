@@ -1,6 +1,8 @@
 ﻿using CapaDominio.Contratos;
 using CapaDominio.Entidades;
 using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
@@ -13,65 +15,81 @@ namespace CapaPersistencia.ADO_SQLServer
             this.gestorSQL = (GestorSQL)gestorSQL;
         }
 
-        //public void guardarTransaccion(Transaccion transaccion)
-        //{
-        //    // CREANDO LAS SENTENCIAS SQL
-        //    string insertarMovimiento1SQL, insertarMovimiento2SQL, insertarTransaccionSQL, actualizarCuentaSQL;
+        public void guardarTransaccion(Transaccion transaccion)
+        {
+            string consultaSQL = String.Format("insert into Transaccion" +
+                "(codigo, fecha, monto, tipo, valoracion) " +
+                "values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")",
+                transaccion.Codigo, transaccion.Fecha, transaccion.Monto, transaccion.Tipo, transaccion.Valoracion);
 
-        //    insertarMovimiento1SQL = "insert into Venta(codigoDeMovimiento,tipoDeMoneda,tipoMovimiento) " +
-        //        "values(@codigoDeMovimiento,@tipoDeMoneda,@tipoMovimiento)";
+            try
+            {
+                IDbCommand resultadoSQL = gestorSQL.obtenerComandoSQL(consultaSQL);
+                resultadoSQL.ExecuteScalar();
+                resultadoSQL.Dispose();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Ocurrio un problema al intentar guardar.", err);
+            }
+        }
 
-        //    insertarMovimiento2SQL = "insert into Venta(codigoDeMovimiento,tipoDeMoneda,tipoMovimiento) " +
-        //        "values(@codigoDeMovimiento,@tipoDeMoneda,@tipoMovimiento)";
+        public List<Transaccion> obtenerListaDeTransacciones()
+        {
+            List<Transaccion> transacciones = new List<Transaccion>();
 
-        //    insertarTransaccionSQL = "insert into Transaccion(numeroDeTransaccion,fechaTransaccion,montoDeTrasferencia,valoracion,codigoDeMovimiento) " +
-        //        "values(@numeroDeTransaccion,@fechaTransaccion,@montoDeTrasferencia,@valoracion,@codigoDeMovimiento)";
+            string consultaSQL = "select * from Movimiento";
+            try
+            {
+                IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
 
-        //    actualizarCuentaSQL = "update Cuenta set montoActual = @montoActual where numeroDeCuenta = @numeroDeCuenta";
+                while (resultadoSQL.Read())
+                {
+                    transacciones.Add(obtenerTransaccion(resultadoSQL));
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return transacciones;
+        }
 
-        //    try
-        //    {
-        //        SqlCommand comando;
-        //        Movimiento movimiento;
-        //        // GUARDANDO EL OBJETO 
-        //        if (venta.Cliente != null)
-        //        {
-        //            comando = gestorSQL.obtenerComandoSQL(insertarTransaccion1SQL);
-        //            comando.Parameters.AddWithValue("@numeroDeCuenta", transaccion.Cuenta.NumeroDeCuenta);
-        //        }
-        //        else
-        //        {
-        //            comando = gestorSQL.obtenerComandoSQL(insertarVenta2SQL);
-        //        }
-        //        comando.Parameters.AddWithValue("@numeroDetransaccion", transaccion.NumeroDetransaccion);
-        //        comando.Parameters.AddWithValue("@fecha", transaccion.FechaTrasaccion.Date);
-        //        comando.ExecuteNonQuery();
+        public Transaccion buscarPorCodigo(string codigo)
+        {
+            Transaccion transaccion;
+            string consultaSQL = "select * from Transaccion where codigo = \"" + codigo + "\"";
+            try
+            {
+                IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
+                if (resultadoSQL.Read())
+                {
+                    transaccion = obtenerTransaccion(resultadoSQL);
+                    resultadoSQL.Close();
+                }
+                else
+                {
+                    throw new Exception("No existe transaccion.");
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return transaccion;
+        }
 
-        //        // GUARDANDO LOS OBJETOS 
-        //        foreach (Movimiento movimiento in transaccion.ListaMovimientos)
-        //        {
+        private Transaccion obtenerTransaccion(IDataReader resultadoSQL)
+        {
+            Transaccion transaccion = new Transaccion();
+            transaccion.Codigo = resultadoSQL.GetString(1);
+            //transaccion.Fecha = resultadoSQL.GetString(2);
+            transaccion.Monto = resultadoSQL.GetFloat(3);
+            //transaccion.Tipo = resultadoSQL.GetString(4);
+            transaccion.Valoracion = resultadoSQL.GetInt32(5);
+            return transaccion;
+        }
 
-        //            movimiento = transaccion.Movimiento;
-        //            cuenta = transaccion.Cuenta;
-
-        //            comando = gestorSQL.obtenerComandoSQL(insertarLineaDeVentaSQL);
-        //            comando.Parameters.AddWithValue("@numero", transaccion.Numero);
-        //            comando.Parameters.AddWithValue("@codigo", movimiento.Codigo);
-        //            comando.Parameters.AddWithValue("@montoDetransferencia", transaccion.MontoDeTransferencia);
-        //            comando.Parameters.AddWithValue("@tipoDeMoneda", transaccion.TipoDeMoneda);
-        //            comando.ExecuteNonQuery();
-        //            // Actualizando
-        //            comando = gestorSQL.obtenerComandoSQL(actualizarProductoSQL);
-        //            comando.Parameters.AddWithValue("@montoActual", cuenta.MontoActual);
-        //            comando.Parameters.AddWithValue("@numeroDeCuenta", cuenta.NumeroDeCuenta);
-        //            comando.ExecuteNonQuery();
-        //        }
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        throw new Exception("Ocurrio un problema al intentar guardar.", err);
-        //    }
-        //}
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using CapaDominio.Contratos;
 using CapaDominio.Entidades;
+using CapaDominio.Servicios;
 using CapaPersistencia.FabricaDatos;
 using System.Collections.Generic;
 
@@ -19,30 +20,29 @@ namespace CapaAplicacion.Servicios
 
             gestorDatos = fabricaAbstracta.crearGestorAccesoDatos();
 
-            //cuentaDAO = fabricaAbstracta.crearCuentaDAO(gestorDatos);
+            cuentaDAO = fabricaAbstracta.crearCuentaDAO(gestorDatos);
 
-            //movimientoDAO = fabricaAbstracta.crearMovimientoDAO(gestorDatos);
+            movimientoDAO = fabricaAbstracta.crearMovimientoDAO(gestorDatos);
 
-            //transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
+            transaccionDAO = fabricaAbstracta.crearTransaccionDAO(gestorDatos);
 
             usarioDAO = fabricaAbstracta.crearUsuarioDAO(gestorDatos);
         }
 
-        public List<Movimiento> buscarMovimientos(string codigoDeMovimiento)
+        public Movimiento buscarMovimiento(string codigo)
         {
             gestorDatos.abrirConexion();
-            //List<Movimiento> listaDeMovimientos = movimientoDAO.buscar(codigoDeMovimiento);
+            Movimiento movimiento = movimientoDAO.buscarPorCodigo(codigo);
             gestorDatos.cerrarConexion();
-            //return listaDeMovimientos;
-            return null;
+            return movimiento;
         }
         public void guardarTransaccion(Transaccion transaccion)
         {
-            //RegistroDeTransaccion registroDeTransaccion = new RegistroDeMovimiento();
-            //registroDeTransaccion.validarTransaccion(transaccion);
-            //gestorDatos.iniciarTransaccion();
-            //transaccionDAO.guardar(transaccion);
-            //gestorDatos.terminarTransaccion();
+            RegistroTransaccion registroDeTransaccion = new RegistroTransaccion();
+            registroDeTransaccion.validarTransaccion(transaccion);
+            gestorDatos.iniciarTransaccion();
+            transaccionDAO.guardarTransaccion(transaccion);
+            gestorDatos.terminarTransaccion();
         }
     }
 }

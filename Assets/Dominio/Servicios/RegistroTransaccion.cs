@@ -5,15 +5,11 @@ namespace CapaDominio.Servicios
 {
     public class RegistroTransaccion
     {
-        public void validarTrasaccion(Transaccion transaccion, Banco banco, Usuario usuario)
+        public void validarTransaccion(Transaccion transaccion)
         {
             if (!transaccion.validarMonto())
             {
                 throw new Exception("ERROR");
-            }
-            if (!banco.validarUsuario(usuario))
-            {
-                throw new Exception("No se puede transferir, usuario inválido.");
             }
         }
     }

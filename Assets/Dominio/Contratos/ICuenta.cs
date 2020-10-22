@@ -5,9 +5,10 @@ namespace CapaDominio.Contratos
 {
     public interface ICuenta
     {
-        //Cuenta buscarPorNumeroCuenta(string numero);
+        void guardarCuenta(Cuenta cuenta);
+        List<Cuenta> obtenerListaDeCuentas();
+        Cuenta buscarPorNumeroCuenta(string numero);
+        Cuenta buscarPorNumeroInterbancario(string numero);
 
-        //List<Transaccion> buscarTransaccion(string numero);
-
-    }
+    } 
 }

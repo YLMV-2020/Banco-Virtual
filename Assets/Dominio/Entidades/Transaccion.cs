@@ -61,12 +61,10 @@ namespace CapaDominio.Entidades
 
         public float calcularTransferencia(float monto, string tipomoneda1)
         {
-
             if (tipomoneda1.Equals("DOLAR"))
             {
                 monto *= 3.45f;
             }
-
             return monto;
         }
 
@@ -74,7 +72,34 @@ namespace CapaDominio.Entidades
         {
             codigo = codigoaux2;
             return (codigo == codigoaux);
+        }
 
+        public bool validarMonto(Cuenta cuenta)
+        {
+            return monto <= cuenta.Saldo;
+        }
+
+        public float calcularComision()
+        {
+            float comision = 0.0f;
+
+            comision += tipo == TipoTransaccion.CUENTA_PROPIA ? 0.5f : 0.0f;
+            comision += tipo == TipoTransaccion.OTRA_CUENTA ? monto * 0.15f : 0.0f;
+
+            return comision;
+        }
+        public float calcularMontoTotal()
+        {
+            return monto + calcularComision();
+        }
+
+        public float calcularTransferencia(Cuenta cuenta)
+        {
+            float transferencia = 0.0f;
+            transferencia += cuenta.Moneda == Moneda.SOL ? monto : 0.0f;
+            transferencia += cuenta.Moneda == Moneda.DOLAR ? monto * 3.45f : 0.0f;
+
+            return transferencia;
         }
 
     }

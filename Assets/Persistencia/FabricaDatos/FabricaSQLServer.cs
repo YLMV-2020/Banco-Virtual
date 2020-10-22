@@ -15,21 +15,19 @@ namespace CapaPersistencia.FabricaDatos
             return new UsuarioDAO(gestorAccesoDatos);
         }
 
-        //public override ICuenta crearCuentaDAO(IGestorAccesoDatos gestorAccesoDatos)
-        //{
-        //    return new CuentaDAO(gestorAccesoDatos);
-        //}
+        public override ICuenta crearCuentaDAO(IGestorAccesoDatos gestorAccesoDatos)
+        {
+            return new CuentaDAO(gestorAccesoDatos);
+        }
 
-        
+        public override ITransaccion crearTransaccionDAO(IGestorAccesoDatos gestorAccesoDatos)
+        {
+            return new TransaccionDAO(gestorAccesoDatos);
+        }
 
-        ////public override ITransaccion crearTransaccionDAO(IGestorAccesoDatos gestorAccesoDatos)
-        ////{
-        ////    return new TransaccionDAO(gestorAccesoDatos);
-        ////}
-
-        //public override IMovimiento crearMovimientoDAO(IGestorAccesoDatos gestorAccesoDatos)
-        //{
-        //    return new MovimientoDAO(gestorAccesoDatos);
-        //}
+        public override IMovimiento crearMovimientoDAO(IGestorAccesoDatos gestorAccesoDatos)
+        {
+            return new MovimientoDAO(gestorAccesoDatos);
+        }
     }
 }
