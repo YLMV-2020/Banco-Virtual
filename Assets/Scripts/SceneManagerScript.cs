@@ -15,14 +15,11 @@ public class SceneManagerScript : MonoBehaviour
     public void cambioEscena(string escena)
     {
         SceneManager.LoadScene(escena);
-        
-        //StartCoroutine(activoFade(escena));
     }
 
     IEnumerator activoFade(string escena)
     {
-        yield return new WaitForSeconds(1);
-        
+        yield return new WaitForSeconds(1);      
     }
 
 

@@ -11,7 +11,6 @@ namespace CapaDominio.Entidades
     public class Cuenta
     {
         private string numero;
-        private string numeroInterbancario;
         private float saldo;
         private Moneda moneda;
         private bool estado;
@@ -19,10 +18,9 @@ namespace CapaDominio.Entidades
 
         public Cuenta() { }
 
-        public Cuenta(string numero, string numeroInterbancario, float saldo, Moneda moneda)
+        public Cuenta(string numero, float saldo, Moneda moneda)
         {
             this.numero = numero;
-            this.numeroInterbancario = numeroInterbancario;
             this.saldo = saldo;
             this.Moneda = moneda;
             this.estado = true;
@@ -30,7 +28,6 @@ namespace CapaDominio.Entidades
         }
 
         public string Numero { get => numero; set => numero = value; }
-        public string NumeroInterbancario { get => numeroInterbancario; set => numeroInterbancario = value; }
         public float Saldo { get => saldo; set => saldo = value; }
         public bool Estado { get => estado; set => estado = value; }
         public Moneda Moneda { get => moneda; set => moneda = value; }

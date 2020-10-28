@@ -13,7 +13,7 @@ namespace CapaPersistencia.ADO_SQLServer
         private IDbConnection conexion;
         private IDbTransaction transaccion;
 
-        string nombreDB = "BancoVirtualDB.db";
+        string nombreDB = "BancoDB.db";
 
         public void abrirConexion()
         {

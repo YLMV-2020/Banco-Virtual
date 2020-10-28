@@ -17,16 +17,20 @@ public class UsuarioDB : MonoBehaviour
     string rutaDB;
     string conexion;
 
+    public GameObject cuentaPrefab;
+    public Transform cuentaPadre;
+
     IDbConnection conexionDB;
     IDbCommand comandosDB;
     IDataReader leerDatos;
 
-    string nombreDB = "BancoVirtualDB.db";
+    string nombreDB = "BancoDB.db";
     
     void Start()
     {
-        obtenerUsuarios();
-        comprobar();
+        mostrarCuentas();
+        //obtenerUsuarios();
+        //comprobar();
     }
 
     void comprobar()
@@ -42,6 +46,39 @@ public class UsuarioDB : MonoBehaviour
 
         gestorSQL.cerrarConexion();
 
+    }
+
+    void mostrarCuentas()
+    {
+
+        FabricaSQLServer fabrica = new FabricaSQLServer();
+        IGestorAccesoDatos gestorSQL = fabrica.crearGestorAccesoDatos();
+        CuentaDAO cuentaDAO = (CuentaDAO)fabrica.crearCuentaDAO(gestorSQL);
+
+        gestorSQL.abrirConexion();
+        List<Cuenta> listaDeCuentas = cuentaDAO.obtenerListaDeCuentas();
+
+        Debug.Log("Numeor de cuentas: " + listaDeCuentas.Count);
+
+        gestorSQL.cerrarConexion();
+
+
+        for (int i = 0; i < listaDeCuentas.Count; i++) 
+        {
+            Debug.Log("S");
+            GameObject tempPrefab = Instantiate(cuentaPrefab);
+            tempPrefab.transform.SetParent(cuentaPadre);
+            tempPrefab.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            Cuenta cuentaTemp = listaDeCuentas[i];
+
+            tempPrefab.GetComponent<CuentaScript>().AgregarCuenta(
+
+                cuentaTemp.Numero,
+                cuentaTemp.Saldo,
+                cuentaTemp.Moneda == Moneda.SOL ? "SOL" : "DOLAR"
+            );
+
+        }
     }
 
     void abrirDB()
@@ -66,6 +103,39 @@ public class UsuarioDB : MonoBehaviour
             Debug.Log("Id: " + id);
             string name = leerDatos.GetString(1);
             Debug.Log("Name: " + name);
+        }
+        leerDatos.Close();
+        leerDatos = null;
+        cerrarDB();
+    }
+
+   
+
+    void obtenerCuentas()
+    {
+        abrirDB();
+        comandosDB = conexionDB.CreateCommand();
+        string sqlQuery = "select * from Cuenta";
+        comandosDB.CommandText = sqlQuery;
+
+        leerDatos = comandosDB.ExecuteReader();
+        while (leerDatos.Read())
+        {
+            Cuenta cuenta = new Cuenta();
+            cuenta.Numero = leerDatos.GetString(0);
+            cuenta.Saldo = leerDatos.GetFloat(1);
+
+            Debug.Log("Cuenta: " + cuenta.Numero);
+
+            string tipoMoneda = leerDatos.GetString(2);
+
+            if (tipoMoneda == "Sol")
+                cuenta.Moneda = Moneda.SOL;
+            else
+                cuenta.Moneda = Moneda.DOLAR;
+
+            //listaDeCuentas.Add(cuenta);
+
         }
         leerDatos.Close();
         leerDatos = null;

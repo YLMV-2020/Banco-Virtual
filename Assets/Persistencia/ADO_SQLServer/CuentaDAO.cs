@@ -3,6 +3,7 @@ using CapaDominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 
 namespace CapaPersistencia.ADO_SQLServer
 {
@@ -20,7 +21,7 @@ namespace CapaPersistencia.ADO_SQLServer
             string consultaSQL = String.Format("insert into Cuenta" +
                 "(numero, numeroInterbancario, saldo, moneda, estado) " +
                 "values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")",
-                cuenta.Numero, cuenta.NumeroInterbancario, cuenta.Saldo, cuenta.Moneda, cuenta.Estado);
+                cuenta.Numero, cuenta.Numero, cuenta.Saldo, cuenta.Moneda, cuenta.Estado);
 
             try
             {
@@ -36,23 +37,23 @@ namespace CapaPersistencia.ADO_SQLServer
 
         public List<Cuenta> obtenerListaDeCuentas()
         {
-            List<Cuenta> cuentas = new List<Cuenta>();
+            List<Cuenta> listaDecuentas = new List<Cuenta>();
 
-            string consultaSQL = "select * from Usuario";
+            string consultaSQL = "select * from Cuenta";
             try
             {
                 IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
 
                 while (resultadoSQL.Read())
                 {
-                    cuentas.Add(obtenerCuenta(resultadoSQL));
+                    listaDecuentas.Add(obtenerCuenta(resultadoSQL));
                 }
             }
             catch (Exception err)
             {
                 throw err;
             }
-            return cuentas;
+            return listaDecuentas;
         }
 
         public Cuenta buscarPorNumeroCuenta(string numero)
@@ -105,12 +106,16 @@ namespace CapaPersistencia.ADO_SQLServer
 
         private Cuenta obtenerCuenta(IDataReader resultadoSQL)
         {
+            
             Cuenta cuenta = new Cuenta();
-            cuenta.Numero = resultadoSQL.GetString(1);
-            cuenta.NumeroInterbancario = resultadoSQL.GetString(2);
-            cuenta.Saldo = resultadoSQL.GetFloat(3);
-            //cuenta.Moneda = resultadoSQL.GetString(4);
-            //cuenta.Estado = (bool)resultadoSQL.GetInt32(5);
+            cuenta.Numero = resultadoSQL.GetString(0);
+            cuenta.Saldo = resultadoSQL.GetFloat(1);
+            string tipoMoneda = resultadoSQL.GetString(2);
+            if (tipoMoneda == "Sol")
+                cuenta.Moneda = Moneda.SOL;
+            else
+                cuenta.Moneda = Moneda.DOLAR;
+            cuenta.Estado = resultadoSQL.GetInt32(4) == 1 ? true : false;
             return cuenta;
         }
 
