@@ -17,6 +17,7 @@ namespace CapaDominio.Entidades
         private float monto;
         private TipoTransaccion tipo;
         private int valoracion;
+        private int codigoDeMovimiento;
         private Cuenta cuenta;
 
         public string Codigo { get => codigo; set => codigo = value; }
@@ -24,6 +25,7 @@ namespace CapaDominio.Entidades
         public float Monto { get => monto; set => monto = value; }
         public TipoTransaccion Tipo { get => tipo; set => tipo = value; }
         public int Valoracion { get => valoracion; set => valoracion = value; }
+        public int CodigoDeMovimiento { get => codigoDeMovimiento; set => codigoDeMovimiento = value; }
         public Cuenta Cuenta { get => cuenta; set => cuenta = value; }
 
         public bool validarMonto()

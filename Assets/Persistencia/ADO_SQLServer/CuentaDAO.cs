@@ -105,8 +105,7 @@ namespace CapaPersistencia.ADO_SQLServer
         }
 
         private Cuenta obtenerCuenta(IDataReader resultadoSQL)
-        {
-            
+        {            
             Cuenta cuenta = new Cuenta();
             cuenta.Numero = resultadoSQL.GetString(0);
             cuenta.Saldo = resultadoSQL.GetFloat(1);
@@ -115,7 +114,7 @@ namespace CapaPersistencia.ADO_SQLServer
                 cuenta.Moneda = Moneda.SOL;
             else
                 cuenta.Moneda = Moneda.DOLAR;
-            cuenta.Estado = resultadoSQL.GetInt32(4) == 1 ? true : false;
+            cuenta.Estado = resultadoSQL.GetInt32(3) == 1 ? true : false;
             return cuenta;
         }
 

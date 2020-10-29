@@ -957,7 +957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.7000122, y: -7.0999756}
+  m_AnchoredPosition: {x: -1.7000732, y: -7.0999756}
   m_SizeDelta: {x: 36.905396, y: 14.266357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1042077666
@@ -1476,6 +1476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1483480537}
   - component: {fileID: 1483480536}
+  - component: {fileID: 1483480538}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1510,6 +1511,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1483480538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483480535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdb3f514ef4ecb439fbaf39fe0ee36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputNumeroTarjeta: {fileID: 653428986}
+  inputDNI: {fileID: 837602653}
+  inputClave: {fileID: 1161700896}
 --- !u!1 &1580219593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,7 +1946,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2025265066}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1483480538}
+        m_TargetAssemblyTypeName: Inicio, Assembly-CSharp
+        m_MethodName: iniciarSesion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1379128377}
+        m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
+        m_MethodName: cambioEscena
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Transferencia
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2025265066
 MonoBehaviour:
   m_ObjectHideFlags: 0

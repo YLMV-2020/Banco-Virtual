@@ -25,16 +25,9 @@ namespace CapaPersistencia.ADO_SQLServer
             try
             {
                 IDataReader resultadoSQL = gestorSQL.ejecutarConsulta(consultaSQL);
-
                 while (resultadoSQL.Read())
                 {
-                    Usuario usuario = new Usuario();
-                    usuario.Nombres = resultadoSQL.GetString(1);
-                    usuario.Apellidos = resultadoSQL.GetString(2);
-                    usuario.Dni = resultadoSQL.GetString(3);
-                    usuario.NumeroDeTarjeta = resultadoSQL.GetString(4);
-                    usuario.Clave = resultadoSQL.GetString(5);
-                    usuarios.Add(usuario);
+                    usuarios.Add(obtenerUsuario(resultadoSQL));
                 }
             }
             catch (Exception err)
@@ -87,11 +80,12 @@ namespace CapaPersistencia.ADO_SQLServer
         private Usuario obtenerUsuario(IDataReader resultadoSQL)
         {
             Usuario usuario = new Usuario();
-            usuario.Nombres = resultadoSQL.GetString(1);
-            usuario.Apellidos = resultadoSQL.GetString(2);
-            usuario.Dni = resultadoSQL.GetString(3);
+            usuario.Dni = resultadoSQL.GetString(0);
+            usuario.Nombres = resultadoSQL.GetString(2);
+            usuario.Apellidos = resultadoSQL.GetString(3);
             usuario.NumeroDeTarjeta = resultadoSQL.GetString(4);
             usuario.Clave = resultadoSQL.GetString(5);
+            usuario.Estado = resultadoSQL.GetInt16(6) == 1 ? true : false;
             return usuario;
         }
     }

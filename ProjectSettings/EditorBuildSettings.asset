@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Registrar Usuario.unity
     guid: 9bdfe74e9aa36fb4f8af7f2c4b33d093
+  - enabled: 1
+    path: Assets/Scenes/Transferencia.unity
+    guid: fd97de11677a9aa42817201f09f24933
   m_configObjects: {}

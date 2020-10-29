@@ -17,10 +17,9 @@ namespace CapaPersistencia.ADO_SQLServer
 
         public void guardarTransaccion(Transaccion transaccion)
         {
-            string consultaSQL = String.Format("insert into Transaccion" +
-                "(codigo, fecha, monto, tipo, valoracion) " +
-                "values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")",
-                transaccion.Codigo, transaccion.Fecha, transaccion.Monto, transaccion.Tipo, transaccion.Valoracion);
+            string consultaSQL = String.Format("INSERT or IGNORE into Transaccion " +
+                "values(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\")",
+                transaccion.Codigo, transaccion.Fecha.ToString(), transaccion.Monto, transaccion.Valoracion, transaccion.CodigoDeMovimiento, transaccion.Cuenta.Usuario.Dni);
 
             try
             {

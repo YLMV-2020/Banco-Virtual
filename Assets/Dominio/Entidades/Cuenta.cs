@@ -15,15 +15,17 @@ namespace CapaDominio.Entidades
         private Moneda moneda;
         private bool estado;
         private List<Transaccion> listaDeTransacciones;
+        private Usuario usuario;
 
         public Cuenta() { }
 
-        public Cuenta(string numero, float saldo, Moneda moneda)
+        public Cuenta(string numero, float saldo, Moneda moneda, Usuario usuario)
         {
             this.numero = numero;
             this.saldo = saldo;
-            this.Moneda = moneda;
+            this.moneda = moneda;
             this.estado = true;
+            this.usuario = usuario;
             this.listaDeTransacciones = new List<Transaccion>();
         }
 
@@ -32,6 +34,7 @@ namespace CapaDominio.Entidades
         public bool Estado { get => estado; set => estado = value; }
         public Moneda Moneda { get => moneda; set => moneda = value; }
         public List<Transaccion> ListaDeTransacciones { get => listaDeTransacciones; set => listaDeTransacciones = value; }
+        public Usuario Usuario { get => usuario; set => usuario = value; }
 
         virtual public float calcularComision()
         {
