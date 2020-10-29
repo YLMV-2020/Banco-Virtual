@@ -13,6 +13,8 @@ public class UsuarioUnity : MonoBehaviour
 
     public static UsuarioUnity sharedInstance;
 
+    public List<Cuenta> listaDeCuentas;
+
     private void Start()
     {
         mostrarCuentas();
@@ -31,7 +33,7 @@ public class UsuarioUnity : MonoBehaviour
         CuentaDAO cuentaDAO = (CuentaDAO)fabrica.crearCuentaDAO(gestorSQL);
 
         gestorSQL.abrirConexion();
-        List<Cuenta> listaDeCuentas = cuentaDAO.obtenerListaDeCuentas();
+        listaDeCuentas = cuentaDAO.obtenerListaDeCuentas();
 
         gestorSQL.cerrarConexion();
 

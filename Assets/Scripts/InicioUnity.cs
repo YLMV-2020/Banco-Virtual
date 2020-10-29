@@ -18,11 +18,13 @@ public class InicioUnity : MonoBehaviour
     public InputField inputNumeroTarjeta;
     public InputField inputDNI;
     public InputField inputClave;
+    public Text textResultado;
 
     public Usuario user = null;
 
     public void iniciarSesion()
     {
+        bool encontrado = false;
         FabricaSQLServer fabrica = new FabricaSQLServer();
         IGestorAccesoDatos gestorSQL = fabrica.crearGestorAccesoDatos();
         UsuarioDAO usuarioDAO = (UsuarioDAO)fabrica.crearUsuarioDAO(gestorSQL);
@@ -37,11 +39,31 @@ public class InicioUnity : MonoBehaviour
             {
                 Debug.Log("Usuario Encontrado: " + usuario.Nombres);
                 user = usuario;
+                encontrado = true;
                 break;
             }
         }
 
+        if(!encontrado)
+        {
+            StartCoroutine("Fade");
+        }
+        else
+        {
+            SceneManagerScript.sharedInstance.cambioEscena("Transferencia");
+        }
+
     }
 
-    
+    IEnumerator Fade()
+    {
+        textResultado.text = "Usuario no registrado";
+        yield return new WaitForSeconds(3.0f);
+        textResultado.text = "";
+        inputNumeroTarjeta.text = "";
+        inputDNI.text = "";
+        inputClave.text = "";
+    }
+
+
 }

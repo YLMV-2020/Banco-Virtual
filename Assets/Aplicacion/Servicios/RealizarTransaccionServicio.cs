@@ -39,7 +39,7 @@ namespace CapaAplicacion.Servicios
         public void guardarTransaccion(Transaccion transaccion)
         {
             RegistroTransaccion registroDeTransaccion = new RegistroTransaccion();
-            registroDeTransaccion.validarTransaccion(transaccion);
+            //registroDeTransaccion.validarTransaccion(transaccion);
             gestorDatos.iniciarTransaccion();
             transaccionDAO.guardarTransaccion(transaccion);
             gestorDatos.terminarTransaccion();

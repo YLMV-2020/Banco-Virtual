@@ -11,11 +11,13 @@ using CapaPersistencia.ADO_SQLServer;
 using CapaDominio.Contratos;
 using CapaDominio.Entidades;
 using UnityEngine.UI;
+using CapaAplicacion.Servicios;
 
 public class TransferenciaUnity : MonoBehaviour
 {
     public InputField inputMonto;
     public InputField inputCuentaDestino;
+    public Text textResultado;
 
     public static TransferenciaUnity sharedInstance;
     private void Awake()
@@ -43,10 +45,6 @@ public class TransferenciaUnity : MonoBehaviour
 
     public void guardarTransaccion()
     {
-        FabricaSQLServer fabrica = new FabricaSQLServer();
-        IGestorAccesoDatos gestorSQL = fabrica.crearGestorAccesoDatos();
-        TransaccionDAO transaccionDAO = (TransaccionDAO)fabrica.crearTransaccionDAO(gestorSQL);
-
         Usuario usuario = InicioUnity.sharedInstance.user;
 
         Transaccion transaccion = new Transaccion();
@@ -58,11 +56,22 @@ public class TransferenciaUnity : MonoBehaviour
         transaccion.Fecha = DateTime.Now;
 
         transaccion.Monto = float.Parse(inputMonto.text);
-      
-        gestorSQL.abrirConexion();
-        transaccionDAO.guardarTransaccion(transaccion);
-        gestorSQL.cerrarConexion();
+
+        RealizarTransaccionServicio transaccionServicio = new RealizarTransaccionServicio();
+        transaccionServicio.guardarTransaccion(transaccion);
+        StartCoroutine("Fade");
+
+
     }
 
-  
+    IEnumerator Fade()
+    {
+        textResultado.text = "Transferencia exitosa";
+        yield return new WaitForSeconds(3.0f);
+        textResultado.text = "";
+        inputMonto.text = "";
+        inputCuentaDestino.text = "";
+    }
+
+
 }

@@ -6,16 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour
 {
-
+    public static SceneManagerScript sharedInstance;
     private void Awake()
     {
-        //DontDestroyOnLoad(this.gameObject);
+        sharedInstance = this;
     }
-
     public void cambioEscena(string escena)
     {
         SceneManager.LoadScene(escena);
     }
+
+
 
     IEnumerator activoFade(string escena)
     {
